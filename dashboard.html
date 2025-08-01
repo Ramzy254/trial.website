@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Download Files</title>
+</head>
+<body>
+  <h2>Welcome to the Dashboard</h2><br>
+  <p><b>Call or WatsaUp 0708900067 to obtain password to open the downloaded documents</b></p>
+  <div id="downloads" style="display:none;">
+    <a href="datasheet.xlsx" download><button>📥 Download Excel</button></a><br><br>
+    <a href="report.pdf" download><button>📄 Download Report Cards</button></a><br><br>
+    <a href="database.accdb" download><button>🗂 Mark list</button></a><br><br>
+  </div>
+
+  <script>
+    const user = sessionStorage.getItem("loggedInUser");
+    if (user) {
+      document.getElementById("downloads").style.display = "block";
+    } else {
+      alert("You must log in first!");
+      window.location.href = "login.html";
+    }
+  </script>
+</body>
+</html>
+

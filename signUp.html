@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sign Up</title>
+</head>
+<body>
+  <h2>Create Account</h2>
+  <input type="text" id="newUsername" placeholder="Create username"><br><br>
+  <input type="password" id="newPassword" placeholder="Create password"><br>
+  <p><small>Password must be at least 6 characters, with a number and symbol.</small></p>
+  <button onclick="register()">Sign Up</button>
+  <p id="message"></p>
+<p>Already have an account? <a href="login.html">Log in</a></p>
+  <script>
+    function isStrong(pass) {
+      return pass.length >= 6 && /[0-9]/.test(pass) && /[!@#$%^&*]/.test(pass);
+    }
+
+    function register() {
+      const user = document.getElementById("newUsername").value.trim();
+      const pass = document.getElementById("newPassword").value.trim();
+      const msg = document.getElementById("message");
+
+      if (!user || !pass) {
+        msg.textContent = "Username and password are required.";
+        return;
+      }
+
+      if (!isStrong(pass)) {
+        msg.textContent = "Password is weak. Use at least 6 characters, number and symbol.";
+        return;
+      }
+
+      localStorage.setItem("user_" + user, pass);
+      msg.style.color = "green";
+      msg.textContent = "✅ Account created! Redirecting...";
+      setTimeout(() => {
+        window.location.href = "login.html";
+      }, 1500);
+    }
+  </script>
+</body>
+</html>
